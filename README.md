@@ -1,4 +1,4 @@
-# sails-hook-sendemail
+# sails-hook-sendemail - IN DEVELOPMENT NOT FOR PRODUCTION READY
 
 Helper to send emails for Sails v1
 

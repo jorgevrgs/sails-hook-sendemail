@@ -39,12 +39,9 @@
   },
   "sails": {
     "isHook": true,
-    "hookName": "jwtoken"
+    "hookName": "sendemail"
   },
   "engines": {
     "node": ">=8"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }

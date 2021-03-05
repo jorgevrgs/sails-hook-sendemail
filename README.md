@@ -15,13 +15,13 @@ sails.helpers.email.send.with({
 });
 ```
 
-### Console
+### Log
 
 ```js
 // /config/email.js
 
 module.exports = {
-  adapter: 'console',
+  adapter: 'log',
 };
 ```
 

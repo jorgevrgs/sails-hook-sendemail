@@ -2,6 +2,7 @@
 // (It'll be exposed as a global momentarily, assuming this app hasn't
 // customized away that behavior.)
 const sails = require('sails');
+const _ = require('@sailshq/lodash');
 const request = require('supertest');
 const { assert } = require('chai');
 
@@ -23,8 +24,9 @@ before(function (done) {
     let configOverrides = sails.getRc === undefined ? {} : sails.getRc();
 
     configOverrides = Object.assign({}, configOverrides, {
+      appPath: './test/app',
       log: Object.assign({}, configOverrides.log, {
-        level: 'error',
+        level: 'info',
       }),
       globals: false,
       hooks: Object.assign({}, configOverrides.hooks, {
@@ -32,7 +34,6 @@ before(function (done) {
         i18n: false,
         pubsub: false,
         session: false,
-        views: false,
         orm: false,
       }),
     });
@@ -52,6 +53,14 @@ before(function (done) {
         }
 
         global.sails = sails;
+
+        if (global._) {
+          throw new Error(
+            'Test runner cannot expose `_` -- that global already exists!'
+          );
+        }
+
+        global._ = _;
 
         if (global.assert) {
           throw new Error(

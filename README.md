@@ -20,7 +20,7 @@ sails.helpers.email.send.with({
 ```js
 // /config/email.js
 
-module.exports = {
+module.exports.email = {
   adapter: 'log',
 };
 ```
@@ -30,7 +30,7 @@ module.exports = {
 ```js
 // /config/email.js
 
-module.exports = {
+module.exports.email = {
   adapter: 'sendgrid',
   settings: {
     secret:
@@ -44,7 +44,7 @@ module.exports = {
 ```js
 // /config/email.js
 
-module.exports = {
+module.exports.email = {
   adapter: 'mailgun',
   settings: {
     secret: 'key-3432afa32e9401482aba183c13f3',
@@ -59,7 +59,7 @@ module.exports = {
 ```js
 // /config/email.js
 
-module.exports = {
+module.exports.email = {
   adapter: 'smtp',
   transport: {
     host: 'smtp.mailtrap.io',

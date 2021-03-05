@@ -1,6 +1,6 @@
 {
   "name": "sails-hook-sendemail",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Send email helper for Sails.js v1",
   "main": "lib/index.js",
   "scripts": {

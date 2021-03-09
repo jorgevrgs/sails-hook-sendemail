@@ -1,4 +1,4 @@
-# sails-hook-sendemail - IN DEVELOPMENT NOT FOR PRODUCTION READY
+# sails-hook-sendemail
 
 Helper to send emails for Sails v1
 
@@ -7,13 +7,82 @@ Helper to send emails for Sails v1
 Use the sails-hook-organics features with some extra features:
 
 ```js
-sails.helpers.email.send.with({
+await sails.helpers.email.send.with({
   from,
   to,
   subject,
   template: 'email-contact',
 });
 ```
+
+## Configuration
+
+Default configuration settings:
+
+```js
+// config/email.js
+module.exports.email = {
+  adapter: 'log' // 'sendgrid', 'mailgun', 'smtp', 'log'
+  validateEmailHelper: 'email.isValidEmailAddress',
+  settings: {} // Sendgrid and Mailgun settings, SMTP 'nodemailer-html-to-text' options
+  transport: {} // SMTP transport
+}
+```
+
+## Validate Email Helper
+
+```js
+// /config/email.js
+
+module.exports.email = {
+  validateEmailHelper: 'my-custom-validation',
+};
+```
+
+This configuration uses `sails.helpers.myCustomValidation(emailAddres)` helper with the `emailAddress` as input.
+
+Example:
+
+Run:
+
+```
+npm install validator
+```
+
+If you haven't installed `sails` run:
+
+```
+npm install -g sails
+```
+
+Then create a helper:
+
+```
+sails generate helper my-custom-validation
+```
+
+Edit the content to include:
+
+```js
+// api/helpers/my-custom-vadilation.js
+
+module.exports = {
+  inputs: {
+    emailAddress: {
+      type: 'string',
+      required: true,
+      isEmail: true
+    }
+  }
+  fn: function({ emailAddress }) {
+    const { isEmail } = require('validator');
+
+    return isEmail(emailAddress);
+  }
+};
+```
+
+## Adapters
 
 ### Log
 
